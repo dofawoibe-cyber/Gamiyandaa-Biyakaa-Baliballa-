@@ -1,0 +1,51 @@
+
+            </div>
+          `;
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        function init() {
+            if (state.darkMode) {
+                document.documentElement.classList.add('dark');
+            }
+            updateDarkModeUI();
+
+            // Set language button active
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.textContent.toLowerCase() === state.language) {
+                    btn.classList.add('active');
+                }
+            });
+
+            window._dirSearch = '';
+            window._galleryFilter = '';
+            window._forumSearch = '';
+            window._bizSearch = '';
+            window._bizCategory = '';
+            window._volSearch = '';
+            window._volCategory = '';
+
+            renderPage('home');
+
+            window.addEventListener('hashchange', () => {
+                const page = window.location.hash.replace('#', '') || 'home';
+                navigate(page);
+            });
+
+            const hash = window.location.hash.replace('#', '');
+            if (hash && ['home', 'about', 'register', 'directory', 'business', 'volunteer', 'projects', 'donations',
+                    'transparency', 'news', 'gallery', 'forum', 'contact', 'admin', 'analytics'
+                ].includes(hash)) {
+                navigate(hash);
+            }
+
+            console.log('🇪🇹 G.B.B. – Together We Build Our Home, Wherever We Live.');
+            console.log('📌 Admin password: admin123');
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
